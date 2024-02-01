@@ -1,0 +1,11 @@
+{
+  "index": "开始",
+  "another": "Another Page",
+  "advanced": "Advanced (A Folder)",
+  "404": {
+    "type": "page",
+    "theme": {
+      "typesetting": "article"
+    }
+  }
+}

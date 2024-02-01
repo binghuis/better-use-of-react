@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/shuding/nextra-docs-template.git"
+    "url": "git+https://github.com/binghuis/better-use-of-react.git"
   },
-  "author": "Shu Ding <g@shud.in>",
+  "author": "binghuis <https://github.com/binghuis",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/shuding/nextra-docs-template/issues"
+    "url": "https://github.com/binghuis/better-use-of-react/issues"
   },
-  "homepage": "https://github.com/shuding/nextra-docs-template#readme",
+  "homepage": "https://github.com/binghuis/better-use-of-react#readme",
   "dependencies": {
     "next": "^14.1.0",
     "nextra": "latest",
@@ -25,7 +25,10 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@types/node": "20.11.14",
+    "@types/node": "20.11.15",
+    "autoprefixer": "^10.4.17",
+    "postcss": "^8.4.33",
+    "tailwindcss": "^3.4.1",
     "typescript": "^5.3.3"
   }
 }
