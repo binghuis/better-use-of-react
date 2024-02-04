@@ -12,7 +12,7 @@ const config: DocsThemeConfig = {
     text: "在 GitHub 上编辑本页 →",
   },
   feedback: {
-    content: "有疑问？给我们反馈 →",
+    content: "有疑问？给我反馈 →",
   },
   nextThemes: {},
   navbar: {},
