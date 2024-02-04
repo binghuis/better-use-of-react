@@ -28,10 +28,15 @@
   },
   "devDependencies": {
     "@types/node": "20.11.16",
+    "@typescript-eslint/eslint-plugin": "^6.20.0",
+    "@typescript-eslint/parser": "^6.20.0",
     "autoprefixer": "^10.4.17",
     "eslint": "^8.56.0",
+    "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-mdx": "^3.1.5",
+    "eslint-plugin-react": "^7.33.2",
     "postcss": "^8.4.33",
+    "prettier": "^3.2.5",
     "tailwindcss": "^3.4.1",
     "typescript": "^5.3.3"
   }
