@@ -1,11 +1,20 @@
 {
-  "index": "开始",
-  "useid": "useId",
-  "another": "Another Page",
-  "advanced": "Advanced (A Folder)",
+  "index": {
+    "title": "🏠",
+    "type": "page",
+    "display": "hidden",
+    "theme": {
+      "timestamp": false
+    }
+  },
+  "docs": {
+    "title": "📃",
+    "type": "page"
+  },
   "404": {
     "type": "page",
     "theme": {
+      "timestamp": false,
       "typesetting": "article"
     }
   }

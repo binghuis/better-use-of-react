@@ -2,7 +2,7 @@ import React from "react";
 import { DocsThemeConfig, LocaleSwitch } from "nextra-theme-docs";
 
 const config: DocsThemeConfig = {
-  logo: <span>🌟</span>,
+  logo: <span>🐈‍⬛</span>,
   project: {
     link: "https://github.com/binghuis/better-use-of-react",
   },
@@ -20,7 +20,7 @@ const config: DocsThemeConfig = {
     backToTop: true,
     title: "目录",
   },
-  faviconGlyph: "✦",
+  faviconGlyph: "🐈‍⬛",
   footer: {
     text: "MIT 2024 © Binghuis",
   },
