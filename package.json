@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/binghuis/better-use-of-react#readme",
   "dependencies": {
+    "@codesandbox/sandpack-react": "^2.11.3",
     "next": "^14.1.0",
     "nextra": "latest",
     "nextra-theme-docs": "latest",
