@@ -2,14 +2,9 @@
   "env": {
     "browser": true
   },
-  "extends": [
-    "plugin:mdx/recommended",
-    "eslint:recommended",
-    "plugin:react/recommended",
-    "plugin:@typescript-eslint/recommended"
-  ],
-  "parser": "@typescript-eslint/parser",
-  "plugins": ["react", "@typescript-eslint", "prettier"],
+  "extends": ["plugin:mdx/recommended", "next"],
+  "parser": "",
+  "plugins": ["prettier"],
   // optional, if you want to lint code blocks at the same time
   "settings": {
     "mdx/code-blocks": true,
