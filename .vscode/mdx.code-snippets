@@ -1,0 +1,17 @@
+{
+  // https://github.com/prettier/prettier/issues/12209
+  "Prettier Ignore": {
+    "prefix": "ignore-prettier",
+    "body": [
+      "",
+      "{/* prettier-ignore-start */}",
+      "",
+      "$0",
+      "",
+      "{/* prettier-ignore-end */}",
+      "",
+    ],
+    "description": "标识客户端组件",
+    "scope": "mdx",
+  },
+}

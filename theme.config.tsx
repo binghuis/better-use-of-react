@@ -1,5 +1,7 @@
 import React from "react";
-import { DocsThemeConfig, LocaleSwitch } from "nextra-theme-docs";
+import { useConfig, LocaleSwitch } from "nextra-theme-docs";
+import { useRouter } from "next/router";
+import type { DocsThemeConfig } from "nextra-theme-docs";
 
 const config: DocsThemeConfig = {
   logo: <span>🐈‍⬛</span>,
