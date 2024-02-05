@@ -2,9 +2,9 @@
   "env": {
     "browser": true
   },
-  "extends": ["next", "plugin:mdx/recommended"],
+  "extends": ["next", "plugin:mdx/recommended", "prettier"],
   "parser": "",
-  "plugins": ["prettier"],
+  "plugins": [],
   // optional, if you want to lint code blocks at the same time
   "settings": {
     "mdx/code-blocks": true,

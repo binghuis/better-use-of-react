@@ -6,6 +6,9 @@ const withNextra = nextra({
 });
 
 export default withNextra({
+  experimental: {
+    typedRoutes: true,
+  },
   i18n: {
     locales: ["zh-CN"],
     defaultLocale: "zh-CN",
