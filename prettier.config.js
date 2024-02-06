@@ -13,5 +13,5 @@ module.exports = {
     }
   ],
   proseWrap: 'preserve', // printWidth line breaks in md/mdx
-  printWidth: 9999
+  printWidth: 999
 }
