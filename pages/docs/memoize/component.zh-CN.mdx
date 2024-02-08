@@ -1,0 +1,31 @@
+# 使用组件记忆化避免组件重渲染
+
+`React.memo` 用于对一个函数组件进行记忆化，使这个组件只有当其 `props` 改变的时候才重渲染。
+
+这句话有两点需要注意，一个是函数组件，一个是 `props` 改变。
+
+- 函数组件：只有函数组件才能使用 `React.memo`，类组件不能使用。
+- `props` 改变：只有 `props` 改变的时候才会重新渲染，如果 `props` 没有改变，那么即使组件内部的状态改变了，也不会重新渲染。
+
+下面我们来看一个例子：
+
+```tsx
+import { memo } from 'react'
+
+type Props = {}
+
+const MemoizedComponent = memo(function MyComponent(props) {
+  /* 只有 props 改变的时候才会重新渲染 */
+})
+```
+
+import { Sandpack } from '@codesandbox/sandpack-react'
+
+<Sandpack
+  template="react"
+  theme="dark"
+  options={{
+    showLineNumbers: false, // default - true
+    resizablePanels: true
+  }}
+/>

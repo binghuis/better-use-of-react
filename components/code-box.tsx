@@ -1,9 +1,13 @@
-import { Sandpack, SandpackInternal } from "@codesandbox/sandpack-react";
+import { Sandpack, SandpackInternal } from '@codesandbox/sandpack-react'
 
-type CodeBoxProps = {};
+type CodeBoxProps = {}
 
 const CodeBox = (props: CodeBoxProps) => {
-  const files = {};
+  const files = {
+    '/App.js': `export default function App() {
+return <h1>Hello Sandpack</h1>
+}`
+  }
 
   return (
     <Sandpack
@@ -12,7 +16,7 @@ const CodeBox = (props: CodeBoxProps) => {
       template="react"
       //   options={{ showConsole: true, showConsoleButton: true }}
     />
-  );
-};
+  )
+}
 
-export default CodeBox;
+export default CodeBox
