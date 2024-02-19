@@ -21,4 +21,10 @@ const MemoizedComponent = memo(function MyComponent(props) {
 
 import CodeBox from '@/components/CodeBox'
 
-<CodeBox />
+<CodeBox
+  files={{
+    'App.js': `export default function App() {
+  return <h1>Hello world</h1>
+}`
+  }}
+/>
