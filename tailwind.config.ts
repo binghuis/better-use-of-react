@@ -6,7 +6,6 @@ const config: Config = {
     extend: {}
   },
   plugins: [],
-  important: true,
   darkMode: ['class', '[data-mode="dark"]']
 }
 export default config
