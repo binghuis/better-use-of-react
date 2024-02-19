@@ -1,7 +1,6 @@
-import { Sandpack, SandpackThemeProp, SandpackProps } from '@codesandbox/sandpack-react'
+import { Sandpack, SandpackThemeProp, SandpackProps, useSandpackTheme } from '@codesandbox/sandpack-react'
 import { useTheme } from 'nextra-theme-docs'
 import { useEffect, useState } from 'react'
-
 type CodeBoxProps = { files: SandpackProps['files'] }
 
 const CodeBox = (props: CodeBoxProps) => {
