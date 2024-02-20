@@ -1,4 +1,6 @@
 {
   "getting-started": "开始",
-  "memoize": "记忆化"
+  "memoize": "记忆化",
+  "debug": "如何调试你的 React 应用",
+  "type": "React 中的 TS 类型系统"
 }
