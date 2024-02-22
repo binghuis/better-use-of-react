@@ -46,8 +46,17 @@ pnpm i -D @types/react @types/react-dom
 
 全部类型查看 [@types/react 声明文件](https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/react/index.d.ts)。
 
-**描述 children**
+**描述组件类型**
 
-**描述 style**
+- `React.ReactElement` - 表示一个 `JSX` 元素。
+- `React.ReactNode` - 表示一个 `JSX` 元素或部分基本类型。
 
-**描述 event**
+**描述内联样式**
+
+```tsx
+interface MyComponentProps {
+  style: React.CSSProperties
+}
+```
+
+**描述事件类型**
