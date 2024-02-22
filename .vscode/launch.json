@@ -10,7 +10,7 @@
       "name": "调试 chrome 应用",
       "url": "http://localhost:5173",
       "webRoot": "${workspaceFolder}/demo/web-debug",
-      "userDataDir": "${workspaceFolder}/.vscode/chrome-debug-userdatadir"
+      "userDataDir": "${workspaceFolder}/.vscode/debug-userdata"
     }
   ]
 }
