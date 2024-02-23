@@ -1,1 +1,18 @@
-# 如何调试你的 React 应用
+# 调试你的 React 应用
+
+如果你使用 `console.log` 来调试你的应用，那么你很可能会遇到几个现实问题。
+
+1. 你需要频繁的在编辑器和网页之间切换，查看控制台，验证你的打印结果。
+2. 你需要到处删除 `console.log` 语句，因为你的 `console.log` 很可能会困扰你的同事。
+3. `console.log` 只能验证一些数据结果，对于代码的执行流程，使用 `console.log` 调试则会非常困难。
+
+如果这些问题困扰着你，那么现在是时候选择使用 `debugger` 来调试你的代码了。
+
+## 使用 `vscode debugger` 调试你的代码
+
+下面我们将介绍如何使用 `vscode debugger` 来调试你的代码。
+
+import Image from 'next/image'
+import debuggerImg from '@/assets/imgs/debugger.jpg'
+
+<Image src={debuggerImg} className="my-4 w-60" alt="调试按钮" priority={true} />

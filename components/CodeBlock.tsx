@@ -1,9 +1,9 @@
 import { Sandpack, SandpackThemeProp, SandpackProps } from '@codesandbox/sandpack-react'
 import { useTheme } from 'nextra-theme-docs'
 import { useEffect, useState } from 'react'
-type CodeBoxProps = { files: SandpackProps['files'] }
+type CodeBlockProps = { files: SandpackProps['files'] }
 
-const CodeBox = (props: CodeBoxProps) => {
+const CodeBlock = (props: CodeBlockProps) => {
   const { theme } = useTheme()
   const [sandpackTheme, setSandpackTheme] = useState<SandpackThemeProp>()
 
@@ -28,4 +28,4 @@ const CodeBox = (props: CodeBoxProps) => {
   )
 }
 
-export default CodeBox
+export default CodeBlock
