@@ -7,6 +7,7 @@
     {
       "type": "chrome",
       "request": "launch",
+      "runtimeArgs": ["--auto-open-devtools-for-tabs"],
       "name": "调试 chrome 应用",
       "url": "http://localhost:5173",
       "webRoot": "${workspaceFolder}/demo/web-debug",
