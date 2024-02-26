@@ -1,3 +1,8 @@
+import Image from 'next/image'
+import { FileTree } from 'nextra/components'
+import { Steps } from 'nextra/components'
+import debuggerImg from '@/assets/imgs/debugger.jpg'
+
 # 调试你的 React 应用
 
 如果你使用 `console.log` 来调试你的应用，那么你很可能会遇到几个现实问题。
@@ -11,11 +16,6 @@
 ## Debugging in VS Code
 
 下面我们将介绍如何在 VS Code 里调试。
-
-import Image from 'next/image'
-import debuggerImg from '@/assets/imgs/debugger.jpg'
-import { FileTree } from 'nextra/components'
-import { Steps } from 'nextra/components'
 
 <Steps>
 ### 创建 `VS Code Debugger` 配置文件
@@ -57,5 +57,10 @@ import { Steps } from 'nextra/components'
 2. `webRoot` 表示你的项目根目录，如果你实际要调试的项目是当前项目的子项目，那么需要在 `${workspaceFolder}` 后面补全实际路径。
 3. `userDataDir` 用来存放用户的调试数据。记得要在 `.gitignore` 文件中忽略这个目录。
 
-<Image src={debuggerImg} className="my-4 w-60" alt="调试按钮" priority={true} />
+### 开始调试
+
+首先启动你要调试项目的开发环境，然后点击图中 **绿色三角** 按钮，调试开启。
+
+<Image src={debuggerImg} className="my-4 w-80" alt="开启调试" />
+
 </Steps>
