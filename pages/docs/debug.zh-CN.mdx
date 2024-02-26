@@ -3,24 +3,59 @@
 如果你使用 `console.log` 来调试你的应用，那么你很可能会遇到几个现实问题。
 
 1. 你需要频繁的在编辑器和网页之间切换，查看控制台，验证你的打印结果。
-2. 你需要到处删除 `console.log` 语句，因为你的 `console.log` 很可能会困扰你的同事。
-3. `console.log` 只能验证一些数据结果，对于代码的执行流程，使用 `console.log` 调试则会非常困难。
+2. 当你调试代码的执行流程时需要使用大量的 `console.log`，并且你还要注意区分不同的打印结果对应着哪个执行步骤。
+3. 必须时刻提醒自己上线之前删除无用的 `console.log`，避免代码里到处都是 `console.log`。
 
-如果这些问题困扰着你，那么现在是时候选择使用 `debugger` 来调试你的代码了。
+如果这些问题仍然困扰着你，那么现在是时候改变了。
 
-## 使用 `vscode debugger` 调试你的代码
+## Debugging in VS Code
 
-下面我们将介绍如何使用 `vscode debugger` 来调试你的代码。
+下面我们将介绍如何在 VS Code 里调试。
 
 import Image from 'next/image'
 import debuggerImg from '@/assets/imgs/debugger.jpg'
-import launch from '@/assets/imgs/launch.jpg'
-import launchConfig from '@/assets/imgs/launch-config.jpg'
-import launchConfig2 from '@/assets/imgs/launch-config2.jpg'
-import launchConfig3 from '@/assets/imgs/launch-config3.jpg'
+import { FileTree } from 'nextra/components'
+import { Steps } from 'nextra/components'
 
-<Image src={launch} className="my-4 w-96" alt="创建调试配置文件" priority={true} />
-<Image src={launchConfig} className="my-4 w-24" alt="创建调试配置文件" priority={true} />
-<Image src={launchConfig2} className="my-4 w-96" alt="创建调试配置文件" priority={true} />
-<Image src={launchConfig3} className="my-4 w-96" alt="创建调试配置文件" priority={true} />
+<Steps>
+### 创建 `VS Code Debugger` 配置文件
+
+在你的项目根目录下创建一个 `.vscode` 文件夹，然后在该文件夹下创建一个 `launch.json` 文件。
+
+`launch.json` 即为 `VS Code Debugger` 的配置文件。
+
+<FileTree>
+  <FileTree.Folder name=".vscode" defaultOpen>
+    <FileTree.File name="launch.json" />
+  </FileTree.Folder>
+</FileTree>
+
+### 配置 `launch.json`
+
+下面是一个 `launch.json` 配置示例，它告诉 `VS Code` 如何启动一个 `Chrome` 实例，并且连接到 `http://localhost:5173`。
+
+```json
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "chrome",
+      "request": "launch",
+      "runtimeArgs": ["--auto-open-devtools-for-tabs"],
+      "name": "Launch Chrome",
+      "url": "http://localhost:5173",
+      "webRoot": "${workspaceFolder}",
+      "userDataDir": "${workspaceFolder}/.vscode/debug-userdata"
+    }
+  ]
+}
+```
+
+注意：
+
+1. `url` 的值需要与你的项目开发环境 `url` 保持一致，也就是说如果你的项目开发环境 `url` 是 `http://localhost:3000`，那么你需要将 `url` 的值修改为 `http://localhost:3000`。
+2. `webRoot` 表示你的项目根目录，如果你实际要调试的项目是当前项目的子项目，那么需要在 `${workspaceFolder}` 后面补全实际路径。
+3. `userDataDir` 用来存放用户的调试数据。记得要在 `.gitignore` 文件中忽略这个目录。
+
 <Image src={debuggerImg} className="my-4 w-60" alt="调试按钮" priority={true} />
+</Steps>

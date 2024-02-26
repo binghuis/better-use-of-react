@@ -1,0 +1,20 @@
+// https://snippet-generator.app/?description=&tabtrigger=&snippet=&mode=vscode
+
+{
+  "React Debug": {
+    "scope": "json, jsonc",
+    "prefix": "debug-react",
+    "body": [
+      "{",
+      "  \"type\": \"chrome\",",
+      "  \"request\": \"launch\",",
+      "  \"runtimeArgs\": [\"--auto-open-devtools-for-tabs\"],",
+      "  \"name\": \"${1:Launch Chrome}\",",
+      "  \"url\": \"http://localhost:${2:5173}\",",
+      "  \"webRoot\": \"\\${workspaceFolder}$3\",",
+      "  \"userDataDir\": \"\\${workspaceFolder}/.vscode/${4:debug-userdata}\"",
+      "}",
+      "$0"
+    ]
+  }
+}
