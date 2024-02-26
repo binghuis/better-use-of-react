@@ -1,6 +1,8 @@
 {
   "getting-started": "开始",
   "memoize": "记忆化",
+  "use-effect": "处理副作用",
+  "state": "状态管理",
   "debug": "调试你的 React 应用",
   "typescript": "React 中的 TypeScript"
 }
