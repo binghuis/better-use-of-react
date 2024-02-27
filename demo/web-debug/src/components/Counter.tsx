@@ -5,10 +5,9 @@ type Props = { initialCount: number }
 const Counter = (props: Props) => {
   const { initialCount } = props
   const [count, setCount] = useState(initialCount)
-  console.log(props, initialCount)
 
   return (
-    <div className="flex space-x-2 items-center border p-4 rounded">
+    <div className="flex space-x-2 items-center border p-4 rounded ">
       <div>{count}</div>
       <button
         onClick={() => {
