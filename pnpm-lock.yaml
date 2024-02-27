@@ -4,9 +4,6 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
-overrides:
-  '@codesandbox/sandpack-client': 2.10.0
-
 dependencies:
   '@codesandbox/sandpack-react':
     specifier: 2.13.2
