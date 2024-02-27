@@ -14,21 +14,21 @@
   "React Functional Component": {
     "prefix": "rfc",
     "body": [
-      "import React from 'react';",
-      "",
       "type Props = {",
-      "",
+      "$1",
       "};",
       "",
-      "const ${1:ComponentName} = (props: Props) => {",
+      "const ${2:ComponentName} = (props: Props) => {",
+      "  const {} = props;",
       "  return (",
       "    <div>",
-      "      $0",
+      "      $3",
       "    </div>",
       "  );",
       "};",
       "",
-      "export default ${1:ComponentName};"
+      "export default ${2:ComponentName};",
+      "$0"
     ],
     "description": "创建函数组件",
     "scope": "typescriptreact"

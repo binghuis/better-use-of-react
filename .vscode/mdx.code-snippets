@@ -6,12 +6,12 @@
       "",
       "{/* prettier-ignore-start */}",
       "",
-      "$0",
+      "$1",
       "",
       "{/* prettier-ignore-end */}",
-      "",
+      "$0"
     ],
     "description": "标识客户端组件",
-    "scope": "mdx",
-  },
+    "scope": "mdx"
+  }
 }

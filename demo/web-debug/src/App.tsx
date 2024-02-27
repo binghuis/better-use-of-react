@@ -1,30 +1,9 @@
-import { useLayoutEffect, useState } from 'react'
-
-async function queryData() {
-  const data = await new Promise<number>(resolve => {
-    setTimeout(() => {
-      resolve(666)
-    }, 2000)
-  })
-  return data
-}
-
+import './App.css'
+import CounterWrapper from './components/CounterWrapper'
 function App() {
-  const [num, setNum] = useState(0)
-
-  useLayoutEffect(() => {
-    queryData().then(data => {
-      setNum(data)
-    })
-  }, [])
-
   return (
-    <div
-      onClick={() => {
-        setNum(prevNum => prevNum + 1)
-      }}
-    >
-      {num}
+    <div className="flex justify-center w-full h-full">
+      <CounterWrapper />
     </div>
   )
 }
