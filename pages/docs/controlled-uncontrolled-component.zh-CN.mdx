@@ -1,11 +1,111 @@
 # 什么是受控组件与非受控组件
 
-受控组件：组件状态由 props 控制
-非受控组件：组件状态由内部 state 控制
+在了解这两个概念之前，你需要知道 `JSX` 是什么。
 
-在 React 中组件可分为：
+## `JSX`
 
-- 内置浏览器组件
-- 自定义组件
+`JSX` 是 `JavaScript` 的语法扩展，它可以让我们在 `JS` 中编写类似 `HTML` 的代码。
 
-内置浏览器组件
+看起来像这样：
+
+```tsx
+const element = <div>hello, world</div>
+```
+
+我们可以给 `element` 赋一个 `div`，看起来很奇怪，但这就是 `JSX` 语法。可以将 `JS` 和 `HTML` 写在一起。
+
+不过，需要注意的是这里的 `div` 可不是原生 `DOM`。
+
+在 `JSX` 语法中，`HTML` 标签都是 `React` 元素，也就是根据真实 `DOM` 结构抽象出来的对象，即我们常说的虚拟 `DOM`。
+
+`JSX` 元素在项目构建的时候会被 `babel` 转换。
+
+上面定义的 `element` 在转换之前是这样的：
+
+```tsx
+<div>hello, world</div>
+```
+
+经过 `babel` 转换后是这样的：
+
+```tsx
+import { jsx as _jsx } from 'react/jsx-runtime'
+/*#__PURE__*/ _jsx('div', {
+  children: 'hello, world'
+})
+```
+
+`babel` 将 `JSX` 元素转换成了一个虚拟 `DOM` 的创建操作，函数 `_jsx` 创建的虚拟 `DOM` 结构是这样的：
+
+```
+{
+  $$typeof: Symbol(react.element),
+  key: null,
+  props: {
+    children: 'hello, world'
+  },
+  ref: null,
+  type: 'div'
+}
+```
+
+`element` 虚拟 `DOM` 的标签类型是 `div`，子元素是文本元素 `'hello, world'`，其描述了真实 `DOM` 的结构。
+
+> 虚拟 `DOM` 转为真实 `DOM` 是通过 `react-dom` 库实现的。
+
+## 受控与非受控
+
+在 `React` 中，组件的状态可分为：受控和非受控。
+
+受控和非受控的区别在于组件的状态是由谁来控制的。
+
+简单来说：
+
+组件状态由外部控制的就是受控组件，由内部控制的就是非受控组件。
+
+在 `React` 里，如果一个组件的状态是由 `props` 控制的，那么这个组件就是受控组件。
+如果这个组件的状态是由内部 `state` 控制的，那么这个组件就是非受控组件。
+
+在 `React` 中，组件分为：
+
+- 内置浏览器组件：比如 `div`、`input`、`form` 等。
+- 自定义组件：开发者自己实现的函数组件或类组件。
+
+注意这些内置浏览器组件并不是原生 `DOM`，它们是 `React` 元素。在 `JSX` 部分我们已经讲过了。
+
+下面我们看一个受控浏览器组件的例子：
+
+浏览器组件 `<input>` 的状态 `value` 完全由 `onChange` 事件控制。
+
+```tsx
+function ControlledInput() {
+  const [inputValue, setInputValue] = useState('')
+
+  const handleInputChange = event => {
+    setInputValue(event.target.value)
+  }
+
+  return <input type="text" value={inputValue} onChange={handleInputChange} />
+}
+```
+
+再来看一个非受控浏览器组件的例子：
+
+浏览器组件 `<input>` 的状态完全由组件自身管理，我们仅通过 `ref` 就能获取它的值，组件的数据更新不需要外部控制。
+
+```tsx
+function UncontrolledInput() {
+  const inputRef = useRef(null)
+
+  const handleButtonClick = () => {
+    const inputValue = inputRef.current.value
+  }
+
+  return (
+    <div>
+      <input type="text" ref={inputRef} />
+      <button onClick={handleButtonClick}>取值</button>
+    </div>
+  )
+}
+```
