@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useId, useState } from 'react'
 import Counter from './Counter'
 
 import { useReducer } from 'react'
@@ -15,15 +15,16 @@ const CounterWrapper = () => {
   const [count, setCount] = useState(0)
   const update = useUpdate()
 
+  const counterInitId = useId()
+
   return (
     <div className="border rounded p-4 space-y-4">
       <div className="flex space-x-2">
         <div>
-          <label htmlFor="counter">计数器初始值：</label>
+          <label htmlFor={counterInitId}>计数器初始值：</label>
           <input
             type="number"
-            id="counter"
-            name="counter"
+            id={counterInitId}
             className="border p-2 rounded"
             value={count}
             onChange={e => {
