@@ -5,5 +5,6 @@
   "state": "状态管理",
   "debug": "调试你的 React 应用",
   "typescript": "React 中的 TypeScript",
-  "render": "组件如何渲染"
+  "render": "组件如何渲染",
+  "why-choose-function-components": "为什么选择函数组件？"
 }

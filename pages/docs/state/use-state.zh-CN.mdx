@@ -1,0 +1,27 @@
+# useState
+
+在 Hook 出现之前，函数组件都是无状态的，组件只能接收 props，无法在内部保存状态。
+
+而在 Hook 出现之后，函数组件也可以有自己的状态了，相比类组件，有状态的函数组件更加强大。
+
+`useState` 是一个最基本的 Hook，它的作用就是为函数组件添加状态。
+
+下面通过 `useState` 创建一个状态变量 state 和对应的 set 函数。
+
+```tsx
+const [state, setState] = useState(initialState)
+```
+
+当然，`useState` 还可以接收一个函数作为参数，函数返回一个初始状态。
+这个函数只会在组件的初始化阶段执行一次，初始化函数不携带参数且只能为纯函数。
+
+```tsx
+const [state, setState] = useState(() => initialState)
+```
+
+状态变量的 set 函数可以为其传入一个新的状态值，这个新的状态值会替换掉原来的状态值。
+当组件内状态改变的时候，组件会重新渲染。
+
+```tsx
+setState(nextState)
+```
