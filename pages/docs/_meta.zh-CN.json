@@ -4,5 +4,6 @@
   "use-effect": "处理副作用",
   "state": "状态管理",
   "debug": "调试你的 React 应用",
-  "typescript": "React 中的 TypeScript"
+  "typescript": "React 中的 TypeScript",
+  "render": "组件如何渲染"
 }
