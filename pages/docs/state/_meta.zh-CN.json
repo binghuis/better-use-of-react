@@ -1,3 +1,4 @@
 {
-  "use-state": "状态"
+  "state-props": "Props 和 State",
+  "context-reducer": "Context 和 Reducer"
 }
