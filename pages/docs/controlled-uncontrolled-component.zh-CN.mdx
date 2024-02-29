@@ -14,9 +14,9 @@ const element = <div>hello, world</div>
 
 我们可以给 `element` 赋一个 `div`，看起来很奇怪，但这就是 `JSX` 语法。可以将 `JS` 和 `HTML` 写在一起。
 
-不过，需要注意的是这里的 `div` 可不是原生 `DOM`。
+不过，需要注意的是这里的 `div` 并不是原生 `DOM`。
 
-在 `JSX` 语法中，`HTML` 标签都是 `React` 元素，也就是根据真实 `DOM` 结构抽象出来的对象，即我们常说的虚拟 `DOM`。
+写在 `HTML` 文档中的 `HTML` 标签是原生 `DOM`，而写在 `JSX` 中的 `HTML` 标签是 `JSX` 元素。
 
 `JSX` 元素在项目构建的时候会被 `babel` 转换。
 
@@ -35,7 +35,8 @@ import { jsx as _jsx } from 'react/jsx-runtime'
 })
 ```
 
-`babel` 将 `JSX` 元素转换成了一个虚拟 `DOM` 的创建操作，函数 `_jsx` 创建的虚拟 `DOM` 结构是这样的：
+`babel` 将 `JSX` 元素转换成了一个 `React` 元素的创建操作，函数 `_jsx` 创建了一个与真实 `DOM` 结构对应的 `React` 元素，
+这个根据真实 `DOM` 结构抽象出来的对象，即我们常说的虚拟 `DOM`。结构是这样的：
 
 ```
 {
@@ -71,11 +72,11 @@ import { jsx as _jsx } from 'react/jsx-runtime'
 - 内置浏览器组件：比如 `div`、`input`、`form` 等。
 - 自定义组件：开发者自己实现的函数组件或类组件。
 
-注意这些内置浏览器组件并不是原生 `DOM`，它们是 `React` 元素。在 `JSX` 部分我们已经讲过了。
+注意 `React` 的内置浏览器组件并不是原生 `DOM`，它们实际上是 `React` 元素。在 `JSX` 部分我们已经讲过了。
 
 下面我们看一个受控浏览器组件的例子：
 
-浏览器组件 `<input>` 的状态 `value` 完全由 `onChange` 事件控制。
+组件 `<input>` 的状态 `value` 完全由 `onChange` 事件控制。
 
 ```tsx
 function ControlledInput() {
@@ -91,20 +92,20 @@ function ControlledInput() {
 
 再来看一个非受控浏览器组件的例子：
 
-浏览器组件 `<input>` 的状态完全由组件自身管理，我们仅通过 `ref` 就能获取它的值，组件的数据更新不需要外部控制。
+组件 `<input>` 的状态由组件自身管理，组件的数据更新不需要外部控制，我们通过 `ref` 获取它的值。
 
 ```tsx
 function UncontrolledInput() {
   const inputRef = useRef(null)
 
   const handleButtonClick = () => {
-    const inputValue = inputRef.current.value
+    console.log(inputRef.current.value)
   }
 
   return (
     <div>
       <input type="text" ref={inputRef} />
-      <button onClick={handleButtonClick}>取值</button>
+      <button onClick={handleButtonClick}>打印 input 值</button>
     </div>
   )
 }
