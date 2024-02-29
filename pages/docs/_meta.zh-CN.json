@@ -1,11 +1,11 @@
 {
   "getting-started": "开始",
+  "why-choose-function-components": "为什么是函数组件",
+  "controlled-uncontrolled-component": "组件受控与非受控",
+  "state-impact-rendering": "状态如何影响渲染",
   "memoize": "记忆化",
   "use-effect": "处理副作用",
-  "state": "状态管理",
   "debug": "调试你的 React 应用",
   "typescript": "React 中的 TypeScript",
-  "render": "组件如何渲染",
-  "why-choose-function-components": "为什么选择函数组件？",
-  "controlled-uncontrolled-component": "受控与非受控组件"
+  "render": "组件如何渲染"
 }
