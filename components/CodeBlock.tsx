@@ -1,11 +1,12 @@
 import { Sandpack, SandpackThemeProp, SandpackProps } from '@codesandbox/sandpack-react'
 import { useTheme } from 'nextra-theme-docs'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, Children } from 'react'
 type CodeBlockProps = { files: SandpackProps['files'] }
 
-const CodeBlock = (props: CodeBlockProps) => {
+const CodeBlock = (props: React.PropsWithChildren<CodeBlockProps>) => {
   const { theme } = useTheme()
   const [sandpackTheme, setSandpackTheme] = useState<SandpackThemeProp>()
+  console.log(props.children)
 
   useEffect(() => {
     setSandpackTheme({ light: 'light', dark: 'dark', system: 'auto' }[theme] ?? 'auto')
