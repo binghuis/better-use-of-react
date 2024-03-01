@@ -5,7 +5,8 @@ const withNextra = nextra({
   themeConfig: './theme.config.tsx',
   latex: true,
   defaultShowCopyCode: true,
-  codeHighlight: false
+  codeHighlight: true,
+  mdxOptions: {}
 })
 
 export default withNextra({

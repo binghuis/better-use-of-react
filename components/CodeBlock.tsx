@@ -5,7 +5,6 @@ import { useEffect, useState, Children } from 'react'
 const CodeBlock = (props: React.PropsWithChildren) => {
   const { theme } = useTheme()
   const [sandpackTheme, setSandpackTheme] = useState<SandpackThemeProp>()
-  console.log(props.children)
 
   useEffect(() => {
     setSandpackTheme({ light: 'light', dark: 'dark', system: 'auto' }[theme] ?? 'dark')
@@ -15,6 +14,11 @@ const CodeBlock = (props: React.PropsWithChildren) => {
     <div className="my-4">
       <Sandpack
         theme={sandpackTheme}
+        files={{
+          ['']: {
+            code: ''
+          }
+        }}
         options={{
           showConsole: true,
           showConsoleButton: true,
