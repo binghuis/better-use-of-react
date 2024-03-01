@@ -78,7 +78,7 @@ import { jsx as _jsx } from 'react/jsx-runtime'
 
 组件 `<input>` 的状态 `value` 完全由 `onChange` 事件控制。
 
-```tsx
+```tsx /value={inputValue}/ /onChange={handleInputChange}/
 function ControlledInput() {
   const [inputValue, setInputValue] = useState('')
 
