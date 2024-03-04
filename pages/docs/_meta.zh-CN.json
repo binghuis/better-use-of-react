@@ -6,6 +6,7 @@
   "memoize": "记忆化",
   "use-effect": "处理副作用",
   "debug": "调试你的 React 应用",
-  "typescript-cheatsheet": "TypeScript 查缺补漏",
+  "typescript-cheatsheet": "被忽视的 TypeScript",
+  "tsconfig": "优化 tsconfig 配置",
   "render": "组件如何渲染"
 }

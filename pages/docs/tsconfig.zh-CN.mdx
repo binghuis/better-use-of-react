@@ -1,0 +1,18 @@
+`React` 项目中的 `TypeScript` 类型是由 [`@types/react`](https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/react/index.d.ts) 和 [`@types/react-dom`](https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/react-dom/index.d.ts) 这两个包提供的。
+
+在 `TS` 配置文件 [`tsconfig.json`](https://www.typescriptlang.org/tsconfig/) 中你总会看到 `jsx` 、`lib` 这两个配置项。
+
+```json
+{
+  "compilerOptions": {
+    "jsx": "preserve",
+    "lib": ["ESNext", "DOM"]
+  }
+}
+```
+
+**`lib`** 表示你要引入的类型文件。比如 `["ESNext", "DOM"]` 表示引入最新版 `ECMAScript` 类型定义和浏览器 `DOM` 相关的类型定义。
+
+**`jsx`** 表示 `tsx` 文件的处理方式。`"preserve"` 表示将 `tsx` 文件编译成 `jsx` 文件并保留 `JSX` 语法。`JSX` 后续会被 `babel` 处理。
+[测试 `tsx` 其他编译结果](https://www.typescriptlang.org/zh/play?noImplicitAny=false&jsx=1&pretty=true&filetype=ts#code/JYOwLgpgTgZghgYwgAgEIFcxgPYgApTYAOAzsgN4BQyyuAwgDbAIDWAXMgBQCUyAvAD5kAN2zAAJgG5qyBAAtgDcVAggOAUQYQAtqrCUAvpUoJcJMGkw4Q-LuVohGzFgBpZCpSpsGOGLLgJiEl5BChkVMHQoG04ZGgAeACMrXAcnVj5yeiZWAwE4mgp5RWVVI0LkeIB6ZP8QfJpuaQNpIA)
+。

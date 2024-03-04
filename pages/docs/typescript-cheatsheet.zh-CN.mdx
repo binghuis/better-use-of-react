@@ -1,24 +1,124 @@
-# TypeScript 里容易被忽视的知识点
+import SummaryContent from '@/components/SummaryContent'
 
-`React` 项目中的 `TypeScript` 类型是由 [`@types/react`](https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/react/index.d.ts) 和 [`@types/react-dom`](https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/react-dom/index.d.ts) 这两个包提供的。
+# TypeScript 被忽视的部分
 
-在 `TS` 配置文件 [`tsconfig.json`](https://www.typescriptlang.org/tsconfig/) 中你总会看到 `jsx` 和 `lib` 这两个配置项。
+## 一些被误解的 TypeScript 类型
 
-```json
+<details>
+<summary>**如何表示一个值是任意值**：`unknown`</summary>
+<SummaryContent>
+尽管 `any` 和 `unknown` 都能表示任意值，但 `any` 完全放弃了类型检查，你对一个 `any` 类型的值做任何操作 `TypeScript` 都不会校验。
+而对 `unknown` 类型的值做操作时，`TypeScript` 会检查你的操作是否安全。
+
+比如下面的例子：
+
+```ts
+const foo: unknown = { a: 1 }
+
+console.log(foo.a) // 报错：对象的类型为“未知”。
+```
+
+```ts
+const bar: any = { b: 1 }
+
+console.log(bar.b) // 不进行类型检查，不报错
+```
+
+简而言之 `unknown` 是安全的，`any` 是不安全的。
+
+</SummaryContent>
+</details>
+
+<details>
+<summary>**如何表示一个值是任意对象**</summary>
+<SummaryContent>
+使用泛型类型 `Record` 描述一个具有任意字符串键和任意类型值的对象。
+
+```ts
+Record<string, unknown>
+```
+
+也可以使用字面量类型，这里使用了索引签名 `[key: string]` 表示任意字符串键。
+
+```
 {
-  "compilerOptions": {
-    "jsx": "preserve",
-    "lib": ["ESNext", "DOM"]
-  }
+    [key: string]: unknown;
+};
+```
+
+字面量类型比泛型类型更容易扩展，比如你要添加一个数字类型属性 `a`。
+
+使用字面量类型：
+
+```
+{
+    [key: string]: unknown;
+    a: number;
+};
+```
+
+而泛型类型则需要使用联合类型：
+
+```ts
+Record<string, unknown> & { a: number }
+```
+
+</SummaryContent>
+</details>
+
+<details>
+<summary>**如何表示一个值是空对象**</summary>
+<SummaryContent>
+```ts
+Record<string, never>
+```
+
+</SummaryContent>
+</details>
+
+<details>
+<summary>**`Object`、`object`、`{}`**</summary>
+<SummaryContent>
+`object` 是非原始值的意思。
+
+`{}` 表示 `Object` 任何非空值。
+
+`React.Component<{}, State>`
+
+```ts
+// 以下三者等价，都表示非空值
+interface AnyNonNullishValue {}
+// type AnyNonNullishValue = {}
+// type AnyNonNullishValue = Object
+```
+
+</SummaryContent>
+</details>
+
+```ts
+export declare interface AppProps {
+  children?: React.ReactNode // best, accepts everything React can render
+  childrenElement: React.JSX.Element // A single React element
+  style?: React.CSSProperties // to pass through style props
+  onChange?: React.FormEventHandler<HTMLInputElement> // form events! the generic parameter is the type of event.target
+  //  more info: https://react-typescript-cheatsheet.netlify.app/docs/advanced/patterns_by_usecase/#wrappingmirroring
+  props: Props & React.ComponentPropsWithoutRef<'button'> // to impersonate all the props of a button element and explicitly not forwarding its ref
+  props2: Props & React.ComponentPropsWithRef<MyButtonWithForwardRef> // to impersonate all the props of MyButtonForwardedRef and explicitly forwarding its ref
 }
 ```
 
-**`lib`** 表示你要引入的类型文件。比如 `["ESNext", "DOM"]` 就表示我要引入最新版 `ECMAScript` 类型定义和浏览器 `DOM` 相关的类型定义。
+<details>
+<summary>**为什么不推荐使用 `React.FC`**</summary>
+<SummaryContent>
+[React TypeScript Cheatsheet](https://react-typescript-cheatsheet.netlify.app/docs/basic/getting-started/function_components/)
 
-**`jsx`** 表示 `tsx` 的处理方式。`"preserve"` 表示将 `tsx` 文件编译成 `jsx` 文件并保留 `JSX` 语法。`JSX` 后续会被 `babel` 处理。
-[`tsx` 其他编译结果](https://www.typescriptlang.org/zh/play?noImplicitAny=false&jsx=1&pretty=true&filetype=ts#code/JYOwLgpgTgZghgYwgAgEIFcxgPYgApTYAOAzsgN4BQyyuAwgDbAIDWAXMgBQCUyAvAD5kAN2zAAJgG5qyBAAtgDcVAggOAUQYQAtqrCUAvpUoJcJMGkw4Q-LuVohGzFgBpZCpSpsGOGLLgJiEl5BChkVMHQoG04ZGgAeACMrXAcnVj5yeiZWAwE4mgp5RWVVI0LkeIB6ZP8QfJpuaQNpIA)
-。
+[Remove React.FC from Typescript template #8177](https://github.com/facebook/create-react-app/pull/8177)
 
-## 一些被误解的 TypeScript 类型
+</SummaryContent>
+</details>
+
+`Function` 任何函数类型
+
+`setState: React.Dispatch<React.SetStateAction<number>>;`
 
 ## type 和 interface 的选择
