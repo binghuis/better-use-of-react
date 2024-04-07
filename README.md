@@ -26,3 +26,5 @@ React 内部函数
 
 如果一个函数依赖 state 并且既执行副作用又管理组件状态，首先需要考虑函数设计问题，这个函数如何执行副作用清理，
 执行不了副作用清理必然要拆逻辑。
+
+[react-test-renderer](https://www.npmjs.com/package/react-test-renderer)
