@@ -60,7 +60,7 @@ const CodeBlock = (props: PropsWithChildren<React.ReactElement | React.ReactElem
           showConsole: true,
           showConsoleButton: true,
           showLineNumbers: true,
-          editorWidthPercentage: 55,
+          editorWidthPercentage: 60,
           classes: {},
           autoReload: false
         }}
