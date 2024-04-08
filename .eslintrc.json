@@ -3,6 +3,7 @@
     "browser": true
   },
   "extends": ["next", "plugin:mdx/recommended", "prettier"],
+  "rules": {},
   "parser": "",
   "plugins": [],
   // optional, if you want to lint code blocks at the same time
