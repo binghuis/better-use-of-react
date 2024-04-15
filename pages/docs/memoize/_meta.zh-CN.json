@@ -1,5 +1,5 @@
 {
-  "component": "组件记忆化",
+  "state": "值记忆化",
   "function": "函数记忆化",
-  "state": "状态记忆化"
+  "component": "组件记忆化"
 }

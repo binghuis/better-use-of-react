@@ -1,0 +1,19 @@
+import CodeBlock from '@/components/CodeBlock'
+
+<CodeBlock>
+
+```tsx
+import { useState } from 'react'
+export default function App() {
+  const [count, setCount] = useState(0)
+  const clickHandle = () => setCount(v => v + 1)
+  return (
+    <div>
+      <button onClick={clickHandle}>+1</button>
+      {count}
+    </div>
+  )
+}
+```
+
+</CodeBlock>

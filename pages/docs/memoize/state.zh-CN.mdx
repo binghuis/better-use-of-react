@@ -1,0 +1,43 @@
+# 值记忆化
+
+在 React 中我们使用 Hook useMemo 来记忆化计算值。
+
+import CodeBlock from '@/components/CodeBlock'
+
+<CodeBlock>
+
+```tsx
+import { useState, useMemo } from 'react'
+import { useUpdate } from './hooks'
+import Counter from './Counter'
+export default function App() {
+  const update = useUpdate()
+
+  return (
+    <div>
+      <button onClick={update}>refresh</button>
+      <Counter />
+    </div>
+  )
+}
+```
+
+```Counter.tsx
+import { useState, useMemo } from 'react'
+import { delay } from './utils'
+export default function Counter() {
+  const [count, setCount] = useState(0)
+  const double = (() => {
+    delay(500)
+    return count * 2
+  })()
+
+  return <div>
+  <div onClick={() => {setCount(v=>v+1)}}>+1</div>
+<div>{count}</div>
+  <div>{double}</div>
+  </div>
+}
+```
+
+</CodeBlock>

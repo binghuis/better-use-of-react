@@ -2,6 +2,7 @@ import { Sandpack, SandpackThemeProp, SandpackProps, SandpackFile } from '@codes
 import { useTheme } from 'nextra-theme-docs'
 import { useEffect, useState, PropsWithChildren } from 'react'
 import { hash } from 'spark-md5'
+import { hooksCode, utilsCode } from './code'
 function genCodeString(node: string | React.ReactElement | React.ReactElement[]) {
   let codeString = ''
 
@@ -50,10 +51,22 @@ const CodeBlock = (props: PropsWithChildren<React.ReactElement | React.ReactElem
 
   if (!props.children) return null
 
+  const defaultFiles = {
+    'sandbox.config.json': { code: `{ "infiniteLoopProtection" :  false }`, hidden: true },
+    'utils.ts': {
+      code: utilsCode,
+      hidden: true
+    },
+    'hooks.ts': {
+      code: hooksCode,
+      hidden: true
+    }
+  }
+
   return (
     <div className="my-4">
       <Sandpack
-        files={files}
+        files={{ ...files, ...defaultFiles }}
         key={hash(JSON.stringify(files))}
         theme={sandpackTheme}
         options={{
