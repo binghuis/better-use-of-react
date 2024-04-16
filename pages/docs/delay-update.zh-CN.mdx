@@ -1,0 +1,31 @@
+import CodeBlock from '@/components/CodeBlock'
+
+<CodeBlock>
+
+```tsx
+import { useState, useMemo } from 'react'
+import { useUpdate } from './hooks'
+import Counter from './Counter'
+export default function App() {
+  const update = useUpdate()
+
+  return (
+    <div>
+      <button onClick={update}>refresh</button>
+      <Counter />
+    </div>
+  )
+}
+```
+
+```Counter.tsx
+import { useState, useMemo } from 'react'
+import { delay } from './utils'
+export default function Counter() {
+  delay(500)
+
+  return <div>33</div>
+}
+```
+
+</CodeBlock>

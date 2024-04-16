@@ -1,0 +1,156 @@
+# Ref 的使用
+
+import CodeBlock from '@/components/CodeBlock'
+
+## 概述
+
+Hook `useRef` 创建一个引用对象，该对象存在于组件的整个生命周期，不随组件重渲染而重新创建。
+
+引用对象的结构是 `{ current: T }`，`current` 属性指向该对象的引用。
+
+`ref` 对象的引用既可以是一个可变值，也可以是一个 `DOM` 节点。
+
+当传入 `useRef` 的泛型是 `HTML` 元素类型且 `useRef` 的初始值是 `null` 时，返回的是 `DOM` 节点引用。
+否则返回的是值的引用。
+
+```tsx
+// valueRef.current 是一个可变值
+const valueRef = useRef<number>(0)
+
+// domRef.current 是一个 DOM 节点
+const domRef = useRef<HTMLDivElement>(null)
+```
+
+`DOM` 节点引用的类型是 `React.RefObject`，`current` 只读。而可变值引用的类型是 `React.MutableRefObject`，`current` 可变。
+
+## 引用一个值
+
+当 `ref` 用于引用值的时候，`ref.current` 可以被读写，但 `ref.current` 的变化并不会触发组件渲染。
+因此当使用 `useRef` 保存值的时候，仅去保存那些和渲染无关的值。
+
+## 操作 DOM 节点
+
+当 `ref` 用于引用 `DOM` 节点时，`ref` 将会被转发到 `DOM` 上，通过 `ref.current` 可获取 `DOM`。
+
+```tsx
+function Component() {
+  const ref = useRef<HTMLDivElement>(null)
+  return <div ref={ref}></div>
+}
+```
+
+### 绑定动态列表
+
+将一个 `ref` 对象绑定到一个固定 `DOM` 上很简单，但当 `DOM` 是动态生成的呢，如何将这些 `DOM` 绑定到 `ref` 上？
+
+使用 `ref` 回调可以解决这个问题，`ref` 回调是一个函数，当组件挂载或卸载时，会被调用，函数的参数是 `DOM` 节点。
+
+<CodeBlock>
+
+```tsx
+const list: { id: number }[] = []
+for (let i = 0; i < 10; i++) {
+  list.push({
+    id: i
+  })
+}
+import { useMultiRef } from './useMultiRef'
+export default function Component() {
+  const { setRef, getRef } = useMultiRef()
+
+  function scrollToId(itemId: number) {
+    const node = getRef(itemId)
+    node?.scrollIntoView({
+      behavior: 'smooth',
+      block: 'nearest',
+      inline: 'center'
+    })
+  }
+
+  return (
+    <div style={{ position: 'relative' }}>
+      <nav style={{ position: 'fixed', top: 0 }}>
+        <button onClick={() => scrollToId(0)}>0</button>
+        <button onClick={() => scrollToId(5)}>5</button>
+        <button onClick={() => scrollToId(9)}>9</button>
+      </nav>
+      <div>
+        {list.map(item => (
+          <div
+            style={{ height: '100px', borderBottom: '1px solid gray', display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+            key={item.id}
+            ref={node => {
+              // 在这里使用 ref 回调
+              setRef(item.id, node)
+            }}
+          >
+            {item.id}
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
+```
+
+```useMultiRef.ts
+// 这是一个自定义 hook，用于绑定多个 ref
+import { useRef } from 'react'
+export function useMultiRef() {
+  const refs = useRef(new Map<string | number, Element | null>())
+
+  const setRef = (key: string | number, ele: Element | null) => {
+    if (ele) {
+      refs.current.set(key, ele)
+    } else {
+      refs.current.delete(key)
+    }
+  }
+
+  const getRef = (key: string | number) => {
+    return refs.current.get(key)
+  }
+
+  return {
+    getRef,
+    setRef
+  }
+}
+```
+
+</CodeBlock>
+### 暴露 DOM 节点
+
+```tsx
+interface Props {
+  title: string
+}
+const Component = forwardRef<HTMLDivElement, Props>((props, ref) => {
+  return <div ref={ref}>{props.title}</div>
+})
+```
+
+### 暴露命令式句柄
+
+```tsx
+interface Props {
+  title: string
+}
+export const FancyButton = forwardRef<
+  {
+    a: number
+  },
+  Props
+>((props, ref) => {
+  useImperativeHandle(
+    ref,
+    () => {
+      return {
+        a: 1
+      }
+    },
+    []
+  )
+  return <div>{props.title}</div>
+})
+```

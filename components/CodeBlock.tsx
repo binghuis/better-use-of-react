@@ -67,7 +67,7 @@ const CodeBlock = (props: PropsWithChildren<React.ReactElement | React.ReactElem
     <div className="my-4">
       <Sandpack
         files={{ ...files, ...defaultFiles }}
-        key={hash(JSON.stringify(files))}
+        key={hash(JSON.stringify(files)) + (sandpackTheme === 'auto' ? sandpackTheme : '')}
         theme={sandpackTheme}
         options={{
           showConsole: true,
