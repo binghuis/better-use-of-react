@@ -32,7 +32,7 @@ const domRef = useRef<HTMLDivElement>(null)
 
 当 `ref` 用于引用 `DOM` 节点时，`ref` 将会被转发到 `DOM` 上，通过 `ref.current` 可获取 `DOM`。
 
-```tsx {5,8}
+```tsx {5}
 function Component() {
   const ref = useRef<HTMLDivElement>(null)
 
@@ -132,7 +132,7 @@ export function useMultiRef() {
 
 通过 `forwardRef` 可以把组件内部的 `DOM` 节点暴露给父组件。
 
-```tsx
+```tsx {3}
 interface Props {}
 const Component = forwardRef<HTMLDivElement, Props>((props, ref) => {
   return <div ref={ref}></div>
@@ -144,7 +144,7 @@ const Component = forwardRef<HTMLDivElement, Props>((props, ref) => {
 通过 `useImperativeHandle` 可以把组件内部的命令式句柄暴露给父组件。
 此时父组件通过 `ref` 拿到的不是 `DOM` 节点，而是自定义的句柄对象。
 
-```tsx
+```tsx {8-12}
 interface Props {}
 interface Handle {
   a: number
