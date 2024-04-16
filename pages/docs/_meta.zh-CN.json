@@ -5,6 +5,7 @@
   "state-impact-rendering": "状态如何影响渲染",
   "memoize": "记忆化",
   "ref": "Ref 的使用",
+  "deep-props": "数据深层传递",
   "delay-update": "延迟更新",
   "use-effect": "处理副作用",
   "debug": "调试你的 React 应用",
