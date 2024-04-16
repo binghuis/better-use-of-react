@@ -4,7 +4,7 @@
   "controlled-uncontrolled-component": "组件受控与非受控",
   "state-impact-rendering": "状态如何影响渲染",
   "memoize": "记忆化",
-  "ref": "useRef 的使用",
+  "ref": "Ref 的使用",
   "delay-update": "延迟更新",
   "use-effect": "处理副作用",
   "debug": "调试你的 React 应用",

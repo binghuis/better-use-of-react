@@ -8,20 +8,20 @@ Hook `useRef` 创建一个引用对象，该对象存在于组件的整个生命
 
 引用对象的结构是 `{ current: T }`，`current` 属性指向该对象的引用。
 
-`ref` 对象的引用既可以是一个可变值，也可以是一个 `DOM` 节点。
+`ref` 对象的引用既可以是一个值，也可以是一个 `DOM` 节点。
 
 当传入 `useRef` 的泛型是 `HTML` 元素类型且 `useRef` 的初始值是 `null` 时，返回的是 `DOM` 节点引用。
 否则返回的是值的引用。
 
 ```tsx
-// valueRef.current 是一个可变值
+// valueRef.current 是一个值
 const valueRef = useRef<number>(0)
 
 // domRef.current 是一个 DOM 节点
 const domRef = useRef<HTMLDivElement>(null)
 ```
 
-`DOM` 节点引用的类型是 `React.RefObject`，`current` 只读。而可变值引用的类型是 `React.MutableRefObject`，`current` 可变。
+`DOM` 节点引用的类型是 `React.RefObject`，`current` 只读。而值引用的类型是 `React.MutableRefObject`，`current` 可变。
 
 ## 引用一个值
 
@@ -32,29 +32,38 @@ const domRef = useRef<HTMLDivElement>(null)
 
 当 `ref` 用于引用 `DOM` 节点时，`ref` 将会被转发到 `DOM` 上，通过 `ref.current` 可获取 `DOM`。
 
-```tsx
+```tsx {5,8}
 function Component() {
   const ref = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    console.log(ref.current)
+  }, [])
+
   return <div ref={ref}></div>
 }
 ```
 
 ### 绑定动态列表
 
-将一个 `ref` 对象绑定到一个固定 `DOM` 上很简单，但当 `DOM` 是动态生成的呢，如何将这些 `DOM` 绑定到 `ref` 上？
+将一个 `ref` 对象绑定到一个固定 `DOM` 上很简单，但当 `DOM` 是动态生成的列表呢，如何将这些 `DOM` 绑定到 `ref` 上？
 
-使用 `ref` 回调可以解决这个问题，`ref` 回调是一个函数，当组件挂载或卸载时，会被调用，函数的参数是 `DOM` 节点。
+使用 `ref` 回调可以解决这个问题，`ref` 回调是一个参数为 `DOM` 节点的函数，当组件挂载或卸载时被调用。
+
+下面是一个示例，我实现了一个 `useMultiRef` 自定义 hook，用于绑定多个 `ref`。
 
 <CodeBlock>
 
 ```tsx
+import { useMultiRef } from './useMultiRef'
+
 const list: { id: number }[] = []
 for (let i = 0; i < 10; i++) {
   list.push({
     id: i
   })
 }
-import { useMultiRef } from './useMultiRef'
+
 export default function Component() {
   const { setRef, getRef } = useMultiRef()
 
@@ -121,27 +130,26 @@ export function useMultiRef() {
 </CodeBlock>
 ### 暴露 DOM 节点
 
+通过 `forwardRef` 可以把组件内部的 `DOM` 节点暴露给父组件。
+
 ```tsx
-interface Props {
-  title: string
-}
+interface Props {}
 const Component = forwardRef<HTMLDivElement, Props>((props, ref) => {
-  return <div ref={ref}>{props.title}</div>
+  return <div ref={ref}></div>
 })
 ```
 
 ### 暴露命令式句柄
 
+通过 `useImperativeHandle` 可以把组件内部的命令式句柄暴露给父组件。
+此时父组件通过 `ref` 拿到的不是 `DOM` 节点，而是自定义的句柄对象。
+
 ```tsx
-interface Props {
-  title: string
+interface Props {}
+interface Handle {
+  a: number
 }
-export const FancyButton = forwardRef<
-  {
-    a: number
-  },
-  Props
->((props, ref) => {
+export const Component = forwardRef<Handle, Props>((props, ref) => {
   useImperativeHandle(
     ref,
     () => {
@@ -151,6 +159,6 @@ export const FancyButton = forwardRef<
     },
     []
   )
-  return <div>{props.title}</div>
+  return <div></div>
 })
 ```
