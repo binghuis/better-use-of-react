@@ -26,11 +26,11 @@ const domRef = useRef<HTMLDivElement>(null)
 ## 引用一个值
 
 当 `ref` 用于引用值的时候，`ref.current` 可以被读写，但 `ref.current` 的变化并不会触发组件渲染。
-因此当使用 `useRef` 保存值的时候，仅去保存那些和渲染无关的值。
+因此当使用 `useRef` 保存值的时候，你应该仅去保存那些和渲染无关的值。
 
 ## 操作 DOM 节点
 
-当 `ref` 用于引用 `DOM` 节点时，`ref` 将会被转发到 `DOM` 上，通过 `ref.current` 可获取 `DOM`。
+当 `ref` 用于引用 `DOM` 节点时，`ref` 将会被转发到 `DOM` 上，通过 `ref.current` 获取 `DOM`。
 
 ```tsx {5}
 function Component() {
@@ -46,11 +46,11 @@ function Component() {
 
 ### 绑定动态列表
 
-将一个 `ref` 对象绑定到一个固定 `DOM` 上很简单，但当 `DOM` 是动态生成的列表呢，如何将这些 `DOM` 绑定到 `ref` 上？
+将一个 `ref` 对象绑定到一个固定 `DOM` 上很简单，但当 `DOM` 是动态生成的列表，如何将这些 `DOM` 绑定到 `ref` 上？
 
-使用 `ref` 回调可以解决这个问题，`ref` 回调是一个参数为 `DOM` 节点的函数，当组件挂载或卸载时被调用。
+使用 `ref 回调` 可以解决这个问题，`ref 回调` 是一个参数为 `DOM` 节点的函数，当组件挂载或卸载时被调用。
 
-下面是一个示例，我实现了一个 `useMultiRef` 自定义 hook，用于绑定多个 `ref`。
+下面是一个示例，我实现了一个 `useMultiRef` Hook，用于保存动态列表。
 
 <CodeBlock>
 
@@ -132,7 +132,7 @@ export function useMultiRef() {
 
 通过 `forwardRef` 可以把组件内部的 `DOM` 节点暴露给父组件。
 
-```tsx {3}
+```tsx /HTMLDivElement/ /ref={ref}/
 interface Props {}
 const Component = forwardRef<HTMLDivElement, Props>((props, ref) => {
   return <div ref={ref}></div>
