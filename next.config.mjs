@@ -14,25 +14,28 @@ const withBundleAnalyzer = NextBundleAnalyzer({
   enabled: process.env.ANALYZE === 'true'
 })
 
-export default withNextra(withBundleAnalyzer({
-  experimental: {
-    typedRoutes: true
-  },
-  i18n: {
-    locales: ['zh-CN'],
-    defaultLocale: 'zh-CN'
-  },
-  redirects: () => [
-    {
-      source: '/docs.([a-zA-Z-]+)',
-      destination: '/docs/getting-started',
-      statusCode: 302
+export default withNextra(
+  withBundleAnalyzer({
+    experimental: {
+      typedRoutes: true,
+      optimizePackageImports: []
     },
-    {
-      source: '/docs',
-      destination: '/docs/getting-started',
-      statusCode: 302
-    }
-  ],
-  reactStrictMode: true
-}))
+    i18n: {
+      locales: ['zh-CN'],
+      defaultLocale: 'zh-CN'
+    },
+    redirects: () => [
+      {
+        source: '/docs.([a-zA-Z-]+)',
+        destination: '/docs/getting-started',
+        statusCode: 302
+      },
+      {
+        source: '/docs',
+        destination: '/docs/getting-started',
+        statusCode: 302
+      }
+    ],
+    reactStrictMode: true
+  })
+)
