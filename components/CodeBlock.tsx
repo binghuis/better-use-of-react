@@ -28,12 +28,12 @@ function genFilesOpts(node: React.ReactElement | React.ReactElement[]) {
   if (!Array.isArray(node)) {
     const { 'data-language': lang, children } = node.props
     const [fileName, language] = lang.split('.')
-    return { [fileName && language ? `${fileName}.tsx` : 'App.tsx']: { code: genCodeString(children.props.children) } }
+    return { [fileName && language ? `${fileName}.${language ?? 'tsx'}` : 'App.tsx']: { code: genCodeString(children.props.children) } }
   } else {
     return node.reduce((acc, child) => {
       const { 'data-language': lang, children } = child.props
       const [fileName, language] = lang.split('.')
-      acc[fileName && language ? `${fileName}.tsx` : 'App.tsx'] = { code: genCodeString(children.props.children) }
+      acc[fileName && language ? `${fileName}.${language ?? 'tsx'}` : 'App.tsx'] = { code: genCodeString(children.props.children) }
       return acc
     }, {})
   }

@@ -64,7 +64,7 @@ for (let i = 0; i < 10; i++) {
   })
 }
 
-export default function Component() {
+export default function App() {
   const { setRef, getRef } = useMultiRef()
 
   function scrollToId(itemId: number) {
@@ -105,18 +105,22 @@ export default function Component() {
 ```useMultiRef.ts
 // 这是一个自定义 hook，用于绑定多个 ref
 import { useRef } from 'react'
-export function useMultiRef() {
-  const refs = useRef(new Map<string | number, Element | null>())
 
-  const setRef = (key: string | number, ele: Element | null) => {
-    if (ele) {
-      refs.current.set(key, ele)
+type RefMapKey = string | number
+type RefMapValue = Element | null
+
+export function useMultiRef() {
+  const refs = useRef<Map<RefMapKey, RefMapValue>>(new Map())
+
+  const setRef = (key: RefMapKey, node: RefMapValue) => {
+    if (node) {
+      refs.current.set(key, node)
     } else {
       refs.current.delete(key)
     }
   }
 
-  const getRef = (key: string | number) => {
+  const getRef = (key: RefMapKey) => {
     return refs.current.get(key)
   }
 
@@ -125,6 +129,7 @@ export function useMultiRef() {
     setRef
   }
 }
+
 ```
 
 </CodeBlock>

@@ -1,1 +1,66 @@
 # 数据深层传递
+
+import CodeBlock from '@/components/CodeBlock'
+
+<CodeBlock>
+
+```tsx
+import { useState } from 'react'
+import Page from './page'
+import { ThemeContext, Theme } from './context'
+
+export default function App() {
+  const [theme, setTheme] = useState<Theme>('light')
+
+  return (
+    <ThemeContext.Provider value={theme}>
+      <div>
+        <button onClick={() => setTheme('light')}>浅色</button>
+        <button onClick={() => setTheme('dark')}>深色</button>
+      </div>
+      <Page />
+    </ThemeContext.Provider>
+  )
+}
+```
+
+```page.tsx
+import { useContext } from 'react'
+import { ThemeContext } from './context'
+
+export default function Page() {
+  const theme = useContext(ThemeContext)
+
+  console.log(theme);
+
+  return <div>{theme}</div>
+}
+```
+
+```context.ts
+import { createContext } from 'react'
+
+type Theme = 'light' | 'dark'
+
+export const ThemeContext = createContext<Theme>('dark')
+```
+
+</CodeBlock>
+
+```tsx
+ReactDOM.createRoot(document.getElementById('root')!).render(
+  <ThemeProvider>
+    <ThemeContext.Consumer>
+      {({ theme }) => (
+        <ConfigProvider
+          theme={{
+            algorithm: [theme]
+          }}
+        >
+          <App></App>
+        </ConfigProvider>
+      )}
+    </ThemeContext.Consumer>
+  </ThemeProvider>
+)
+```
