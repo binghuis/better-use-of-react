@@ -1,4 +1,5 @@
 import nextra from 'nextra'
+import NextBundleAnalyzer from '@next/bundle-analyzer'
 
 const withNextra = nextra({
   theme: 'nextra-theme-docs',
@@ -9,7 +10,11 @@ const withNextra = nextra({
   mdxOptions: {}
 })
 
-export default withNextra({
+const withBundleAnalyzer = NextBundleAnalyzer({
+  enabled: process.env.ANALYZE === 'true'
+})
+
+export default withNextra(withBundleAnalyzer({
   experimental: {
     typedRoutes: true
   },
@@ -30,4 +35,4 @@ export default withNextra({
     }
   ],
   reactStrictMode: true
-})
+}))
