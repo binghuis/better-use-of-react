@@ -22,6 +22,24 @@ const config: DocsThemeConfig = {
     title: '目录'
   },
   faviconGlyph: '🐈‍⬛',
+  head: () => {
+    return (
+      <>
+        <title>如何更好的使用 React</title>
+        <meta name="title" content="如何更好的使用 React" />
+        <meta name="description" content="根据 React 19 官方文档，探索 React 在实际开发场景中更合理的使用。" />
+
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://better-use-of-react.vercel.app/" />
+        <meta property="og:title" content="如何更好的使用 React" />
+        <meta property="og:description" content="根据 React 19 官方文档，探索 React 在实际开发场景中更合理的使用。" />
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:url" content="https://better-use-of-react.vercel.app/" />
+        <meta property="twitter:title" content="如何更好的使用 React" />
+        <meta property="twitter:description" content="根据 React 19 官方文档，探索 React 在实际开发场景中更合理的使用。" />
+      </>
+    )
+  },
   footer: {
     text: 'MIT 2024 © Binghuis'
   },
